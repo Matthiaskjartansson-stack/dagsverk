@@ -3,12 +3,19 @@ import { ArrowRight, Check } from 'lucide-react';
 import { useRef } from 'react';
 import WordsPullUpMultiStyle from './WordsPullUpMultiStyle';
 import { PAY } from '../config';
+import { useLang, type Strings } from '../i18n';
 
 const CARD_VIDEO =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4';
 
 const img = (file: string) =>
   `https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2F${file}&w=1280&q=85`;
+
+const ICONS = {
+  verd: img('hf_20260405_171918_4a5edc79-d78f-4637-ac8b-53c43c220606.png'),
+  heimasida: img('hf_20260405_171741_ed9845ab-f5b2-4018-8ce7-07cc01823522.png'),
+  ferlid: img('hf_20260405_171809_f56666dc-c099-4778-ad82-9ad4f209567b.png'),
+};
 
 interface FeatureCard {
   id: string;
@@ -20,45 +27,32 @@ interface FeatureCard {
   cta: { label: string; href: string };
 }
 
-const FEATURES: FeatureCard[] = [
+const buildFeatures = (t: Strings): FeatureCard[] => [
   {
     id: 'verd',
     number: '01',
-    title: 'Tilboðssíða.',
-    icon: img('hf_20260405_171918_4a5edc79-d78f-4637-ac8b-53c43c220606.png'),
-    price: { now: '14.900 kr', was: '29.800 kr' },
-    items: [
-      { text: 'Ein síða fyrir Black Friday- eða jólatilboðið þitt.' },
-      { text: 'Hentar vel til að deila á Facebook og Instagram.' },
-      { text: 'Virkar fullkomlega í síma.' },
-      { text: 'Pantir þú fyrir kl. 12 er hún tilbúin sama dag.' },
-    ],
-    cta: { label: 'Panta tilboðssíðu', href: PAY.tilbod || '#samband' },
+    title: t.plans.tilbod.title,
+    icon: ICONS.verd,
+    price: { now: t.plans.tilbod.now, was: t.plans.tilbod.was },
+    items: t.plans.tilbod.items.map((text) => ({ text })),
+    cta: { label: t.plans.tilbod.cta, href: PAY.tilbod || '#samband' },
   },
   {
     id: 'heimasida',
     number: '02',
-    title: 'Heimasíða.',
-    icon: img('hf_20260405_171741_ed9845ab-f5b2-4018-8ce7-07cc01823522.png'),
-    price: { now: '39.900 kr', was: '79.800 kr' },
-    items: [
-      { text: 'Um okkur, þjónusta, myndir, kort og samband.' },
-      { text: 'Tengd við lénið þitt, hýsing án mánaðargjalds.' },
-      { text: 'Ein umferð lagfæringa innifalin.' },
-    ],
-    cta: { label: 'Panta heimasíðu', href: PAY.heimasida || '#samband' },
+    title: t.plans.heimasida.title,
+    icon: ICONS.heimasida,
+    price: { now: t.plans.heimasida.now, was: t.plans.heimasida.was },
+    items: t.plans.heimasida.items.map((text) => ({ text })),
+    cta: { label: t.plans.heimasida.cta, href: PAY.heimasida || '#samband' },
   },
   {
     id: 'ferlid',
     number: '03',
-    title: 'Ferlið.',
-    icon: img('hf_20260405_171809_f56666dc-c099-4778-ad82-9ad4f209567b.png'),
-    items: [
-      { lead: '09:00', text: 'Þú sendir nafn, lógó og nokkrar línur.' },
-      { lead: '12:00', text: 'Þú færð fyrstu drögin og segir hvað á að breytast.' },
-      { lead: '17:00', text: 'Síðan fer í loftið á lénið þitt.' },
-    ],
-    cta: { label: 'Spyrja spurningar', href: '#spurningar' },
+    title: t.plans.ferlid.title,
+    icon: ICONS.ferlid,
+    items: t.plans.ferlid.steps.map(([lead, text]) => ({ lead, text })),
+    cta: { label: t.plans.ferlid.cta, href: '#spurningar' },
   },
 ];
 
@@ -92,6 +86,8 @@ function AnimatedCard({
 }
 
 export default function Features() {
+  const { t } = useLang();
+  const FEATURES = buildFeatures(t);
   return (
     <section className="relative min-h-screen bg-black px-4 py-16 sm:px-6 sm:py-24 md:py-32 overflow-hidden">
       <div className="bg-noise absolute inset-0 opacity-[0.15] pointer-events-none" />
@@ -101,11 +97,11 @@ export default function Features() {
           <WordsPullUpMultiStyle
             className="!justify-start text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal"
             style={{ color: '#E1E0CC' }}
-            segments={[{ text: 'Vefsíða sem selur, tilbúin samdægurs.' }]}
+            segments={[{ text: t.featTitle }]}
           />
           <WordsPullUpMultiStyle
             className="!justify-start text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal text-gray-500"
-            segments={[{ text: 'Hálfvirði til 30. nóvember.' }]}
+            segments={[{ text: t.featSub }]}
           />
         </div>
 
@@ -121,7 +117,7 @@ export default function Features() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
             <p className="absolute bottom-0 left-0 p-5 sm:p-6 text-lg sm:text-xl" style={{ color: '#E1E0CC' }}>
-              Síðan þín, í loftinu í kvöld.
+              {t.videoCard}
             </p>
           </AnimatedCard>
 
@@ -149,7 +145,7 @@ export default function Features() {
                 <p className="mt-2 flex items-baseline gap-2">
                   <span className="text-2xl sm:text-3xl text-primary tabular-nums">{feature.price.now}</span>
                   <s className="text-xs text-gray-500">
-                    <span className="sr-only">áður </span>
+                    <span className="sr-only">{t.before}</span>
                     {feature.price.was}
                   </s>
                 </p>

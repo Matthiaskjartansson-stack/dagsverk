@@ -1,20 +1,15 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import WordsPullUp from './WordsPullUp';
+import { useLang } from '../i18n';
 
 const HERO_VIDEO =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4';
 
-const NAV_ITEMS = [
-  { label: 'Um okkur', href: '#um-okkur' },
-  { label: 'Ferlið', href: '#ferlid' },
-  { label: 'Verð', href: '#verd' },
-  { label: 'Spurningar', href: '#spurningar' },
-  { label: 'Samband', href: '#samband' },
-];
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function Hero() {
+  const { t, toggle } = useLang();
   return (
     <section className="h-screen p-4 md:p-6">
       <div className="relative h-full w-full overflow-hidden rounded-2xl md:rounded-[2rem]">
@@ -31,7 +26,7 @@ export default function Hero() {
 
         <nav className="absolute top-0 left-1/2 -translate-x-1/2 z-10 bg-black rounded-b-2xl md:rounded-b-3xl px-4 py-2 md:px-8">
           <ul className="flex items-center gap-3 sm:gap-6 md:gap-12 lg:gap-14 whitespace-nowrap">
-            {NAV_ITEMS.map((item) => (
+            {t.nav.map((item) => (
               <li key={item.label}>
                 <a
                   href={item.href}
@@ -44,6 +39,16 @@ export default function Hero() {
                 </a>
               </li>
             ))}
+            <li>
+              <button
+                type="button"
+                onClick={toggle}
+                className="text-[10px] sm:text-xs md:text-sm rounded-full border px-2 py-0.5 transition-opacity duration-150 hover:opacity-100 opacity-80"
+                style={{ color: '#E1E0CC', borderColor: 'rgba(225, 224, 204, 0.35)' }}
+              >
+                {t.switchTo}
+              </button>
+            </li>
           </ul>
         </nav>
 
@@ -54,14 +59,14 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9, ease: EASE }}
           >
-            Black Friday · 50% afsláttur til 30. nóvember
+            {t.offer}
           </motion.div>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 z-10 px-4 pb-4 sm:px-6 sm:pb-6 md:px-8 md:pb-8">
           <div className="grid grid-cols-12 items-end gap-4">
             <div className="col-span-12 lg:col-span-8">
-              <h1 className="sr-only">Dagsverk – vefsíður á einum degi</h1>
+              <h1 className="sr-only">{t.heroSr}</h1>
               <WordsPullUp
                 text="Dagsverk"
                 showAsterisk
@@ -77,8 +82,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5, ease: EASE }}
               >
-                Dagsverk smíðar vefsíður fyrir lítil fyrirtæki á einum vinnudegi. Þú pantar að morgni og síðan þín er
-                komin í loftið áður en þú lokar.
+                {t.heroText}
               </motion.p>
               <motion.a
                 href="#verd"
@@ -87,7 +91,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.7, ease: EASE }}
               >
-                Panta síðu í dag
+                {t.heroCta}
                 <span className="flex items-center justify-center bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 transition-transform duration-300 group-hover:scale-110">
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: '#E1E0CC' }} />
                 </span>

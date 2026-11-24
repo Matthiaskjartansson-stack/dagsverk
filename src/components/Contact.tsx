@@ -3,18 +3,7 @@ import { ArrowRight, Plus } from 'lucide-react';
 import { useState } from 'react';
 import WordsPullUpMultiStyle from './WordsPullUpMultiStyle';
 import { CONTACT } from '../config';
-
-const FAQ = [
-  { q: 'Þarf ég að eiga lén?', a: 'Nei. Við hjálpum þér að skrá .is lén eða notum lén sem þú átt nú þegar.' },
-  {
-    q: 'Hvað ef ég á enga texta eða myndir?',
-    a: 'Við skrifum textann út frá stuttu spjalli og notum myndir af samfélagsmiðlunum þínum eða vandaðar myndir úr myndabanka.',
-  },
-  { q: 'Er mánaðargjald fyrir hýsingu?', a: 'Nei. Hýsing er innifalin án mánaðargjalds. Lén (.is) greiðist sér hjá ISNIC.' },
-  { q: 'Hvernig greiði ég?', a: 'Með korti á öruggri greiðslusíðu. Við byrjum á síðunni um leið og greiðsla berst.' },
-  { q: 'Get ég látið breyta síðunni seinna?', a: 'Já. Þú sendir okkur línu og við lögum smáatriði fyrir þig.' },
-  { q: 'Do you work in English?', a: 'Yes. We build sites in Icelandic, English, or both, in one working day.' },
-];
+import { useLang } from '../i18n';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -48,15 +37,16 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 }
 
 export default function Contact() {
+  const { t, lang } = useLang();
   const hasContact = CONTACT.email || CONTACT.phone;
   return (
     <section className="bg-black px-4 pb-16 sm:px-6 sm:pb-24 md:pb-32">
       <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-2 md:gap-1">
         <div id="spurningar" className="bg-[#101010] rounded-2xl md:rounded-[2rem] p-6 sm:p-10 scroll-mt-6">
-          <p className="text-primary text-[10px] sm:text-xs mb-4 tracking-wide">Spurningar</p>
+          <p className="text-primary text-[10px] sm:text-xs mb-4 tracking-wide">{t.faqLabel}</p>
           <ul>
-            {FAQ.map((f) => (
-              <FaqItem key={f.q} {...f} />
+            {t.faq.map(([q, a]) => (
+              <FaqItem key={q} q={q} a={a} />
             ))}
           </ul>
         </div>
@@ -67,17 +57,17 @@ export default function Contact() {
         >
           <div className="noise-overlay absolute inset-0 opacity-[0.25] mix-blend-overlay pointer-events-none" />
           <div className="relative">
-            <p className="text-primary text-[10px] sm:text-xs mb-6 tracking-wide">Samband</p>
+            <p className="text-primary text-[10px] sm:text-xs mb-6 tracking-wide">{t.contactLabel}</p>
             <WordsPullUpMultiStyle
               className="!justify-start text-4xl sm:text-5xl md:text-6xl leading-[0.95]"
               style={{ color: '#E1E0CC' }}
               segments={[
-                { text: 'Byrjum', className: 'font-normal' },
-                { text: 'í dag.', className: 'italic font-serif' },
+                { text: t.contactTitle[0], className: 'font-normal' },
+                { text: t.contactTitle[1], className: 'italic font-serif' },
               ]}
             />
             <p className="mt-6 text-primary/70 text-sm sm:text-base max-w-sm" style={{ lineHeight: 1.3 }}>
-              Sendu okkur línu. Við svörum yfirleitt innan klukkustundar.
+              {t.contactText}
             </p>
           </div>
 
@@ -97,7 +87,7 @@ export default function Contact() {
                 )}
                 {CONTACT.phone && (
                   <a href={`tel:${CONTACT.phoneHref}`} className="text-primary text-lg sm:text-xl w-fit">
-                    {CONTACT.phone}
+                    {lang === 'en' ? `+354 ${CONTACT.phone}` : CONTACT.phone}
                   </a>
                 )}
               </>
@@ -110,7 +100,7 @@ export default function Contact() {
 
       <footer className="mx-auto max-w-7xl mt-10 flex flex-wrap justify-between gap-2 text-[10px] sm:text-xs text-gray-500">
         <span>© 2026 Dagsverk</span>
-        <span>Vefsíður smíðaðar á einum degi · Reykjavík</span>
+        <span>{t.footer}</span>
       </footer>
     </section>
   );
