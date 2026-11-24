@@ -2,7 +2,7 @@ import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { useRef, type CSSProperties, type ReactNode } from 'react';
 
 export const EASE_OUT = [0.16, 1, 0.3, 1] as const;
-const DAGSVERK_URL = 'https://matthiaskjartansson-stack.github.io/dagsverk/';
+const DAGSVERK_URL = 'https://dagsverk.is/';
 
 /** Sticky strip that makes clear the page is a proposal, not the business's official site. */
 export function ProposalBanner({ business, dark = false }: { business: string; dark?: boolean }) {

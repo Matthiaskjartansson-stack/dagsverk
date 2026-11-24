@@ -2,10 +2,10 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'node:path';
 
-// GitHub Pages serves the site from /<repo-name>/
+// Served from the custom domain dagsverk.is (public/CNAME), so assets live at the root.
 export default defineConfig({
   plugins: [react()],
-  base: process.env.GITHUB_PAGES ? '/dagsverk/' : '/',
+  base: '/',
   build: {
     rollupOptions: {
       input: {
