@@ -5,6 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dagsverk – Vefsíður á einum degi</title>
     <meta name="description" content="Dagsverk smíðar vefsíður fyrir lítil fyrirtæki á einum vinnudegi. Black Friday: 50% afsláttur til 30. nóvember." />
+    <link rel="canonical" href="%VITE_SITE_URL%" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Dagsverk" />
+    <meta property="og:locale" content="is_IS" />
+    <meta property="og:title" content="Dagsverk – Vefsíður á einum degi" />
+    <meta property="og:description" content="Vefsíður fyrir lítil fyrirtæki, tilbúnar samdægurs. Frá 14.900 kr." />
+    <meta property="og:url" content="%VITE_SITE_URL%" />
+    <meta name="twitter:card" content="summary" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Dagsverk",
+        "description": "Vefsíður fyrir lítil fyrirtæki, smíðaðar á einum vinnudegi.",
+        "url": "%VITE_SITE_URL%",
+        "email": "matthiaskjartansson@gmail.com",
+        "telephone": "+354 833 7011",
+        "areaServed": { "@type": "Country", "name": "Iceland" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Reykjavík", "addressCountry": "IS" },
+        "priceRange": "14.900 kr – 39.900 kr",
+        "makesOffer": [
+          { "@type": "Offer", "name": "Tilboðssíða", "price": "14900", "priceCurrency": "ISK" },
+          { "@type": "Offer", "name": "Heimasíða", "price": "39900", "priceCurrency": "ISK" }
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,7 +39,10 @@
     />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <h1>Dagsverk – vefsíður fyrir lítil fyrirtæki á einum degi</h1>
+      <p>Dagsverk smíðar vefsíður fyrir lítil fyrirtæki á einum vinnudegi. Tilboðssíða 14.900 kr, heimasíða 39.900 kr. Sími 833 7011, matthiaskjartansson@gmail.com.</p>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
