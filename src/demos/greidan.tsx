@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, Clock, MapPin, Scissors } from 'lucide-react';
+import { ArrowUpRight, Clock, MapPin, Phone, Scissors } from 'lucide-react';
 import { ProposalBanner, Reveal, SplitWords, EASE_OUT } from './shared';
 import './demo.css';
 
@@ -10,6 +10,12 @@ const display = { fontFamily: "'Anton', Impact, sans-serif" };
 const body = { fontFamily: "'Space Grotesk', system-ui, sans-serif" };
 
 const SLOTS = ['10:30', '11:15', '13:00', '14:45', '16:30'];
+const PHONE = '581 3090';
+const HOURS = [
+  ['Mánudagur – föstudagur', '09:00 – 18:00'],
+  ['Laugardagur', '10:00 – 18:00'],
+  ['Sunnudagur', 'Lokað'],
+];
 const SERVICES = [
   ['Klipping', 'Dömu-, herra- og barnaklipping'],
   ['Litun', 'Heillitun, rót og glans'],
@@ -180,9 +186,20 @@ function Visit() {
         <Reveal>
           <div style={{ background: C.coral, color: '#120A07' }} className="rounded-3xl p-8 sm:p-12 h-full min-h-[280px] flex flex-col justify-between">
             <h2 className="uppercase text-5xl sm:text-7xl leading-[0.9]" style={display}>Komdu við</h2>
-            <div className="mt-10 space-y-2 text-lg" style={body}>
-              <p className="flex items-center gap-2"><MapPin className="w-5 h-5" /> Háaleitisbraut 58–60</p>
-              <p>108 Reykjavík</p>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 text-base sm:text-lg" style={body}>
+              <div className="space-y-2">
+                <p className="flex items-center gap-2"><MapPin className="w-5 h-5" /> Háaleitisbraut 58–60</p>
+                <p>108 Reykjavík</p>
+                <a href="tel:+3545813090" className="inline-flex items-center gap-2 font-medium underline underline-offset-4"><Phone className="w-5 h-5" /> {PHONE}</a>
+              </div>
+              <dl className="space-y-1 text-sm sm:text-base">
+                {HOURS.map(([d, h]) => (
+                  <div key={d} className="flex justify-between gap-4 border-b border-black/15 pb-1">
+                    <dt>{d}</dt>
+                    <dd className="tabular-nums">{h}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </div>
         </Reveal>

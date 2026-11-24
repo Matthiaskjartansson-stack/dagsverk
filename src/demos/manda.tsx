@@ -47,7 +47,7 @@ function Hero() {
       <div className="relative mx-auto max-w-6xl pt-10 pb-20 sm:pt-14 sm:pb-28">
         <nav className="flex items-center justify-between text-sm" style={{ ...sans, color: C.soft }}>
           <span style={{ ...serif, color: C.paper }} className="text-2xl">Manda</span>
-          <span className="inline-flex items-center gap-2"><MapPin className="w-4 h-4" /> Hofsvallagata · Vesturbær</span>
+          <span className="inline-flex items-center gap-2"><MapPin className="w-4 h-4" /> Hofsvallagötu 16 · Vesturbær</span>
         </nav>
         <p className="mt-20 sm:mt-28 text-xs uppercase tracking-[0.25em]" style={{ ...sans, color: C.peach }}>Hárgreiðslustofan Manda</p>
         <h1 className="mt-4 text-[15vw] sm:text-[11vw] lg:text-[9rem] leading-[0.9]" style={{ ...serif, color: C.paper }}>
@@ -141,10 +141,10 @@ function Book() {
           <SplitWords text="Sjáumst" /> <SplitWords text="á stofunni." wordClass="italic" style={{ color: C.peach }} delay={0.16} />
         </h2>
         <Reveal index={2} className="space-y-4 text-lg" >
-          <p style={{ ...sans, color: C.soft }} className="flex items-center gap-2"><MapPin className="w-5 h-5" /> Hofsvallagata, 107 Reykjavík</p>
-          <p style={{ ...sans, color: C.soft }}>Opnunartími og sími koma hér.</p>
-          <a href="#boka" className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium transition-transform duration-150 active:scale-[0.97]" style={{ ...sans, background: C.peach, color: C.ink }}>
-            Hringja og bóka <ArrowRight className="w-4 h-4" />
+          <p style={{ ...sans, color: C.soft }} className="flex items-center gap-2"><MapPin className="w-5 h-5" /> Hofsvallagötu 16, 101 Reykjavík</p>
+          <p style={{ ...sans, color: C.soft }}>Sími 551 7455 · Opnunartími kemur hér.</p>
+          <a href="tel:+3545517455" className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium transition-transform duration-150 active:scale-[0.97]" style={{ ...sans, background: C.peach, color: C.ink }}>
+            Hringja í 551 7455 <ArrowRight className="w-4 h-4" />
           </a>
         </Reveal>
       </div>

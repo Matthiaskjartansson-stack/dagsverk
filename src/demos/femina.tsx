@@ -44,7 +44,7 @@ function Hero() {
           </a>
         </nav>
         <p className="mt-24 sm:mt-32 inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em]" style={{ ...sans, color: C.gold }}>
-          <Sparkles className="w-3.5 h-3.5" /> Snyrtistofa · Garðabæ
+          <Sparkles className="w-3.5 h-3.5" /> Snyrtistofa · Strikinu 6, Garðabæ
         </p>
         <h1 className="mt-5 text-[16vw] sm:text-[11vw] lg:text-[9.5rem] leading-[0.88] font-normal" style={{ ...serif, color: C.deep }}>
           <SplitWords text="Gefðu þér" />
@@ -143,7 +143,7 @@ function Gift() {
         </Reveal>
       </div>
       <footer className="mx-auto max-w-6xl mt-20 flex flex-wrap justify-between gap-2 text-xs" style={{ ...sans, color: '#A89D93' }}>
-        <span>© Femina snyrtistofa · Garðabæ · {PHONE}</span>
+        <span>© Femina snyrtistofa · Strikinu 6, 210 Garðabæ · {PHONE}</span>
         <span>Tillaga smíðuð af Dagsverk</span>
       </footer>
     </section>
