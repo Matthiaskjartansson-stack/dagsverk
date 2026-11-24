@@ -96,7 +96,7 @@ export default function Contact() {
                   </a>
                 )}
                 {CONTACT.phone && (
-                  <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} className="text-primary text-lg sm:text-xl w-fit">
+                  <a href={`tel:${CONTACT.phoneHref}`} className="text-primary text-lg sm:text-xl w-fit">
                     {CONTACT.phone}
                   </a>
                 )}
